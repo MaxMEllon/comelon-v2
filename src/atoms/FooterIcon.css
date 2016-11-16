@@ -1,0 +1,19 @@
+.footer-icon {
+  width: calc((100% - 8px) / 4);
+  display: inline-block;
+  height: 60px;
+  text-align: center;
+  line-height: 64px;
+  border-collapse: collapse;
+  border-right-color: gray;
+  border-right-width: solid;
+  border-right-width: 1px;
+  border-left-color: gray;
+  border-left-style: solid;
+  border-left-width: 1px;
+  color: white;
+}
+
+.footer-icon:hover {
+  color: gray;
+}
