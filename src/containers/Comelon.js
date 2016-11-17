@@ -23,13 +23,23 @@ class Comelon extends Component {
           isLogin={this.props.user.isLogin}
           dispatch={this.props.dispatch}
         />
-      )
+      ),
+    }));
+  }
+
+  onShowConnectForm() {
+    this.props.dispatch(showModal({
+      childComponent: (
+        <div>
+          <h1>接続する</h1>
+        </div>
+      ),
     }));
   }
 
   onHiddenModal(e) {
-    this.props.dispatch(hiddenModal())
     e.preventDefault();
+    this.props.dispatch(hiddenModal());
   }
 
   render() {
@@ -42,7 +52,10 @@ class Comelon extends Component {
           childComponent={modal.childComponent}
           onHiddenModal={this.onHiddenModal}
         />
-        <Footer onShowLoginPage={this.onShowLoginPage} />
+        <Footer
+          onShowLoginPage={this.onShowLoginPage}
+          onShowConnectForm={this.onShowConnectForm}
+        />
       </div>
     );
   }
@@ -52,5 +65,6 @@ export default connect(
   state => ({
     modal: state.modal,
     user: state.user,
-  })
+    comments: state.comments,
+  }),
 )(Comelon);

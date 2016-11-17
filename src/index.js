@@ -15,6 +15,6 @@ window.onload = function () {
     <Provider store={store}>
       <Comelon />
     </Provider>,
-    document.getElementById('main')
+    document.getElementById('main'),
   );
 };

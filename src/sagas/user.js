@@ -1,7 +1,8 @@
 import { fork, take, call, put, cancel } from 'redux-saga/effects';
 
 import {
-  loginPromisfy
+  loginPromisfy,
+  logoutPromisfy,
 } from '../utils/nicolive';
 
 import {
@@ -11,6 +12,15 @@ import {
 } from '../actions';
 
 const x = undefined;
+
+export function* handleLogout() {
+  while (typeof x === 'undefined') {
+    yield take(`${logout}`);
+    yield call(logoutPromisfy);
+    yield put(logout({ cookie: '', isLogin: false }));
+    yield put(hiddenModal());
+  }
+}
 
 export function* handleLogin() {
   while (typeof x === 'undefined') {
@@ -23,4 +33,5 @@ export function* handleLogin() {
 
 export function* userSaga() {
   yield fork(handleLogin);
+  yield fork(handleLogout);
 }

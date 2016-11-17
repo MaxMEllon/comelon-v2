@@ -1,9 +1,9 @@
 import React from 'react';
 import './Header.css';
 
-export const Header = () => (
+export default const Header = () => (
   <div className="header">
-    <input></input>
+    <input />
     <button>送信</button>
   </div>
 );

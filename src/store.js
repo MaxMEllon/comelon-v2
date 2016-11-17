@@ -10,8 +10,8 @@ export default function configureStore(initialState) {
     reducer,
     initialState,
     applyMiddleware(
-      sagaMiddleware, logger()
-    )
+      sagaMiddleware, logger(),
+    ),
   );
   sagaMiddleware.run(rootSaga);
   return store;

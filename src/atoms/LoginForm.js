@@ -1,26 +1,28 @@
 import React from 'react';
 import './LoginFrom.css';
 import { Button } from './Button';
-import { login } from '../actions';
+import {
+  login,
+  logout,
+  hiddenModal,
+} from '../actions';
 
 const onLogin = (e, dispatch) => {
-  e.stopPropagation();
+  e.preventDefault();
   dispatch(login({
     email: document.getElementById('email').value,
     password: document.getElementById('password').value,
-  }))
+  }));
 };
 
 const onReset = (e) => {
-  e.stopPropagation();
+  e.preventDefault();
   document.getElementById('email').value = '';
   document.getElementById('password').value = '';
 };
 
-const onStopEvent = (e) =>  e.stopPropagation();
-
-const renderLoginForm = (dispatch) => (
-  <div onClick={onStopEvent} className="login-page">
+const renderLoginForm = dispatch => (
+  <div className="login-page">
     <h2>ログイン</h2>
     <hr />
     <div className="email">
@@ -41,27 +43,38 @@ const renderLoginForm = (dispatch) => (
       />
       <Button
         content="ログインする"
-        onClick={(e) => onLogin(e, dispatch)}
+        onClick={e => onLogin(e, dispatch)}
       />
     </div>
   </div>
 );
 
-const renderLogoutForm = (dispatch) => (
+const onLogout = (e, dispatch) => {
+  e.preventDefault();
+  dispatch(logout());
+};
+
+const onHiddenModal = (e, dispatch) => {
+  e.preventDefault();
+  dispatch(hiddenModal());
+};
+
+const renderLogoutForm = dispatch => (
   <div className="logout-page">
     <h2>ログアウトしますか？</h2>
     <hr />
     <div className="button-group" style={{ textAlign: 'right' }}>
-      <Button type="danger" content="いいえ" />
-      <Button content="はい" />
+      <Button
+        type="danger"
+        content="いいえ"
+        onClick={e => onHiddenModal(e, dispatch)}
+      />
+      <Button
+        content="はい"
+        onClick={e => onLogout(e, dispatch)}
+      />
     </div>
   </div>
 );
 
-export const LoginForm = ({ dispatch, isLogin }) => {
-  if (isLogin) {
-    return renderLogoutForm(dispatch);
-  } else {
-    return renderLoginForm(dispatch);
-  }
-};
+export const LoginForm = ({ dispatch, isLogin }) => isLogin === true ? renderLogoutForm(dispatch) : renderLoginForm(dispatch);
