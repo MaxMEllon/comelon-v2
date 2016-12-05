@@ -1,4 +1,4 @@
-import { fork, take, call, put, cancel } from 'redux-saga/effects';
+import { fork, take, call, put } from 'redux-saga/effects';
 
 import {
   loginPromisfy,

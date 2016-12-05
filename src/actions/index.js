@@ -1,6 +1,7 @@
 import { createAction } from 'redux-act';
 
 export const showModal = createAction('SHOW_MODAL');
+export const fadeOutModal = createAction('FADE_OUT_MODAL');
 export const hiddenModal = createAction('HIDDEN_MODAL');
 
 export const login = createAction('USER_LOGIN');

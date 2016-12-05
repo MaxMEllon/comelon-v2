@@ -1,7 +1,15 @@
 import { Record } from 'immutable';
 
+
+export const ModalState = {
+  HIDE: 'hide',
+  SHOW: 'show',
+  FADEOUT: 'fadeOut',
+  FADEIN: 'fadeIn',
+};
+
 const defaultValue = {
-  visible: false,
+  visible: ModalState.HIDE,
   childComponent: null,
 };
 

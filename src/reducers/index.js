@@ -1,9 +1,8 @@
-import _ from 'lodash';
 import Immutable from 'immutable';
 import { combineReducers } from 'redux';
 import { createReducer } from 'redux-act';
 import * as actions from '../actions';
-import ModalRecord from '../records/modal';
+import ModalRecord, { ModalState } from '../records/modal';
 import UserRecord from '../records/user';
 import CommentRecord from '../records/comment';
 
@@ -16,10 +15,17 @@ const initialState = {
 const modal = createReducer({
   [actions.showModal]: (state, payload) => {
     const { childComponent } = payload;
-    const record = new ModalRecord({ visible: true, childComponent });
+    const record = new ModalRecord({ visible: ModalState.SHOW, childComponent });
     return state.merge(record);
   },
-  [actions.hiddenModal]: state => state.merge(initialState.modal),
+  [actions.fadeOutModal]: (state) => {
+    const record = Immutable.Map({ visible: ModalState.FADEOUT });
+    return state.merge(record);
+  },
+  [actions.hiddenModal]: (state) => {
+    const record = new ModalRecord({ visible: ModalState.HIDE, childComponent: null });
+    return state.merge(record);
+  },
 }, initialState.modal);
 
 const user = createReducer({

@@ -1,5 +1,5 @@
 import { Record } from 'immutable';
-import { autoBind } from '../utils/binder';
+import autoBind from '../utils/binder';
 
 const defaultValue = {
   isLogin: localStorage.getItem('isLogin') === 'true',

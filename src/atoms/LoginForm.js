@@ -1,6 +1,6 @@
 import React from 'react';
 import './LoginFrom.css';
-import { Button } from './Button';
+import Button from './Button';
 import {
   login,
   logout,
@@ -77,4 +77,8 @@ const renderLogoutForm = dispatch => (
   </div>
 );
 
-export const LoginForm = ({ dispatch, isLogin }) => isLogin === true ? renderLogoutForm(dispatch) : renderLoginForm(dispatch);
+export default function LoginForm({ dispatch, isLogin }) {
+  return isLogin === true
+    ? renderLogoutForm(dispatch)
+    : renderLoginForm(dispatch);
+}

@@ -1,5 +1,5 @@
 import { Record } from 'immutable';
-import { autoBind } from '../utils/binder';
+import autoBind from '../utils/binder';
 
 const defaultValue = {
   user: '184',
@@ -15,7 +15,11 @@ export default class CommentRecord extends Record(defaultValue) {
     autoBind(this);
   }
 
-  setPayLoad({ user, vpos, text, avator, isPremium }) {
-    this.set('user', payload.user);
+  setByPayLoad({ user, vpos, text, avator, isPremium }) {
+    this.set('user', user);
+    this.set('vpos', vpos);
+    this.set('text', text);
+    this.set('avator', avator);
+    this.set('isPremium', isPremium);
   }
 }

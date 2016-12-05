@@ -9,3 +9,8 @@ env:
 
 globals:
   localStorage: false
+  document: false
+  window: false
+
+rules:
+  react/jsx-filename-extension: [0]

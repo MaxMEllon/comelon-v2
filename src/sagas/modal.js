@@ -1,7 +1,9 @@
-import { fork, take, call, put, cancel } from 'redux-saga/effects';
+import { fork, take, put } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 import {
   showModal,
   hiddenModal,
+  fadeOutModal,
 } from '../actions';
 
 const x = undefined;
@@ -15,7 +17,8 @@ export function* handleShowModal() {
 
 export function* handleHiddenModal() {
   while (typeof x === 'undefined') {
-    yield take(`${hiddenModal}`);
+    yield take(`${fadeOutModal}`);
+    yield delay(500);
     yield put(hiddenModal());
   }
 }

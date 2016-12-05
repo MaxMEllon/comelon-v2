@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import './Button.css';
 
-export const Button = ({ type, content, ...props }) => {
+export default function Button({ type, content, ...props }) {
   const klass = type === undefined ? 'button primary' : `button ${type}`;
   return (
     <button className={klass} {...props}>
       { content }
     </button>
   );
+}
+
+Button.propTypes = {
+  type: PropTypes.any,
+  content: PropTypes.string.isRequired,
 };

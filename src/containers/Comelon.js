@@ -1,16 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import autoBind from 'react-autobind';
 import { connect } from 'react-redux';
-import { Footer } from '../components/Footer';
-import { Header } from '../components/Header';
-import { Modal } from '../components/Modal';
-import { LoginForm } from '../atoms/LoginForm';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import Modal from '../components/Modal';
+import LoginForm from '../atoms/LoginForm';
 import {
   showModal,
-  hiddenModal,
+  fadeOutModal,
 } from '../actions';
 
 class Comelon extends Component {
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+  }
+
   constructor(props) {
     super(props);
     autoBind(this);
@@ -39,7 +43,7 @@ class Comelon extends Component {
 
   onHiddenModal(e) {
     e.preventDefault();
-    this.props.dispatch(hiddenModal());
+    this.props.dispatch(fadeOutModal());
   }
 
   render() {
