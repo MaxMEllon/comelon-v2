@@ -1,26 +1,34 @@
 import React, { Component, PropTypes } from 'react';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import autoBind from 'react-autobind';
 import { connect } from 'react-redux';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Modal from '../components/Modal';
 import LoginForm from '../atoms/LoginForm';
+import ConfigForm from '../components/ConfigForm';
+import debugCreator from '../utils/debug';
 import {
   showModal,
   fadeOutModal,
 } from '../actions';
 
-class Comelon extends Component {
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-  }
+const debug = debugCreator('Comelon');
 
+class Comelon extends Component {
   constructor(props) {
     super(props);
     autoBind(this);
   }
 
-  onShowLoginPage() {
+  shouldComponentUpdate(nextProps) {
+    const result = !(Object.is(nextProps.user, this.props.user)) ||
+                   !(Object.is(nextProps.modal, this.props.modal));
+    debug('should update? : %o', result);
+    return result;
+  }
+
+  onShowLoginModal() {
     this.props.dispatch(showModal({
       childComponent: (
         <LoginForm
@@ -41,6 +49,16 @@ class Comelon extends Component {
     }));
   }
 
+  onShowConfigModal() {
+    this.props.dispatch(showModal({
+      childComponent: (
+        <ConfigForm
+          dispatch={this.props.dispatch}
+        />
+      ),
+    }));
+  }
+
   onHiddenModal(e) {
     e.preventDefault();
     this.props.dispatch(fadeOutModal());
@@ -57,13 +75,21 @@ class Comelon extends Component {
           onHiddenModal={this.onHiddenModal}
         />
         <Footer
-          onShowLoginPage={this.onShowLoginPage}
+          onShowLoginModal={this.onShowLoginModal}
           onShowConnectForm={this.onShowConnectForm}
+          onShowConfigModal={this.onShowConfigModal}
         />
       </div>
     );
   }
 }
+
+Comelon.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  modal: ImmutablePropTypes.record.isRequired,
+  user: ImmutablePropTypes.record.isRequired,
+  comments: ImmutablePropTypes.list.isRequired,
+};
 
 export default connect(
   state => ({

@@ -5,7 +5,6 @@ const LiveReloadPlugin = require('webpack-livereload-plugin');
 const { name } = require('./package.json');
 const NodeTargetPlugin = require('webpack/lib/node/NodeTargetPlugin');
 
-
 const DEBUG = process.env.NODE_ENV !== 'production';
 
 const configs = {
@@ -57,7 +56,7 @@ const configs = {
   },
   resolve: {
     extensions: ['', '.js', '.json'],
-    packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main']
+    packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main'],
   },
 };
 

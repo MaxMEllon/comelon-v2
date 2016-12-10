@@ -1,11 +1,20 @@
 import { createAction } from 'redux-act';
 
+// modal
 export const showModal = createAction('SHOW_MODAL');
 export const fadeOutModal = createAction('FADE_OUT_MODAL');
 export const hiddenModal = createAction('HIDDEN_MODAL');
 
-export const login = createAction('USER_LOGIN');
-export const logout = createAction('USER_LOGOUT');
+// login
+export const fetchLogin = createAction('FETCH_USER_LOGIN');
+export const successLogin = createAction('SUCCESS_USER_LOGIN');
+export const failLogin = createAction('FAIL_USER_LOGIN');
+
+// logout
+export const fetchLogout = createAction('FETCHH_USER_LOGOUT');
+export const successLogout = createAction('SUCCESS_USER_LOGOUT');
+// export const failLogout = createAction('FAIL_USER_LOGOUT');
+
 export const ping = createAction('USER_PING');
 
 export const connect = createAction('LIVE_CONNECT');

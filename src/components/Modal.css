@@ -22,3 +22,8 @@
 .close:hover {
   color: rgb(192, 192, 192);
 }
+
+h2 {
+  font-size: 24px;
+  margin-top: 0px 10px;
+}

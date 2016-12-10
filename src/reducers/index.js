@@ -28,19 +28,20 @@ const modal = createReducer({
   },
 }, initialState.modal);
 
+const _logout = (state) => {
+  const record = new UserRecord();
+  record.logout();
+  return state.merge(record);
+};
+
 const user = createReducer({
-  [actions.login]: (state, cookie) => {
-    if (cookie) {
-      const record = new UserRecord(cookie);
-      record.login(cookie);
-      return state.merge(record);
-    }
-  },
-  [actions.logout]: (state) => {
-    const record = new UserRecord();
-    record.logout();
+  [actions.successLogin]: (state, cookie) => {
+    const record = new UserRecord(cookie);
+    record.login(cookie);
     return state.merge(record);
   },
+  [actions.failLogin]: state => _logout(state),
+  [actions.logout]: state => _logout(state),
 }, initialState.user);
 
 const comments = createReducer({

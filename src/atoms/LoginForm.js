@@ -2,14 +2,14 @@ import React from 'react';
 import './LoginFrom.css';
 import Button from './Button';
 import {
-  login,
-  logout,
-  hiddenModal,
+  fetchLogin,
+  fetchLogout,
+  fadeOutModal,
 } from '../actions';
 
 const onLogin = (e, dispatch) => {
   e.preventDefault();
-  dispatch(login({
+  dispatch(fetchLogin({
     email: document.getElementById('email').value,
     password: document.getElementById('password').value,
   }));
@@ -51,12 +51,12 @@ const renderLoginForm = dispatch => (
 
 const onLogout = (e, dispatch) => {
   e.preventDefault();
-  dispatch(logout());
+  dispatch(fetchLogout());
 };
 
 const onHiddenModal = (e, dispatch) => {
   e.preventDefault();
-  dispatch(hiddenModal());
+  dispatch(fadeOutModal());
 };
 
 const renderLogoutForm = dispatch => (
