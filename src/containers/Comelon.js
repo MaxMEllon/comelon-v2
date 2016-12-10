@@ -7,6 +7,7 @@ import Header from '../components/Header';
 import Modal from '../components/Modal';
 import LoginForm from '../components/LoginForm';
 import ConfigForm from '../components/ConfigForm';
+import ConnectForm from '../components/ConnectForm';
 import debugCreator from '../utils/debug';
 import {
   showModal,
@@ -23,8 +24,9 @@ class Comelon extends Component {
 
   shouldComponentUpdate(nextProps) {
     // See: https://github.com/MaxMEllon/js-compare-bench
-    const result = !(Object.is(nextProps.user, this.props.user)) ||
-                   !(Object.is(nextProps.modal, this.props.modal));
+    const userModified = Object.is(nextProps.user, this.props.user);
+    const modalModified = Object.is(nextProps.modal, this.props.modal);
+    const result = !(userModified && modalModified);
     debug('should update? : %o', result);
     return result;
   }
@@ -43,9 +45,9 @@ class Comelon extends Component {
   onShowConnectForm() {
     this.props.dispatch(showModal({
       childComponent: (
-        <div>
-          <h1>接続する</h1>
-        </div>
+        <ConnectForm
+          dispatch={this.props.dispatch}
+        />
       ),
     }));
   }

@@ -10,7 +10,7 @@ import Comelon from './containers/Comelon';
 
 const store = createStore();
 
-window.onload = function () {
+window.onload = () => {
   ReactDOM.render(
     <Provider store={store}>
       <Comelon />

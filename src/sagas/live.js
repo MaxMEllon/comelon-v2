@@ -1,28 +1,36 @@
 import { fork, take, call, put } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
-import { recieveComment } from '../actions';
-import { connectPromisfy } from '../utils';
+import {
+  fetchConnect,
+  recieveComment,
+  fadeOutModal,
+} from '../actions';
+import { connectPromisfy } from '../utils/nicolive';
 
 const x = undefined;
 
 function connectChannel(socket) {
   return eventChannel((emit) => {
-    const onRecieve = () => {
-      socket.on('comment', (comment) => {
-        emit(recieveComment({ comment }));
-      });
-    };
+    socket.on('comment', (comment) => {
+      emit(recieveComment({ comment }));
+    });
     return () => {};
   });
 }
 
-export function* onConnect() {
-  const socket = yield call(connectPromisfy);
-  const channel = yield call(connectChannel, socket);
+export function* commentSage() {
   while (typeof x === 'undefined') {
     const { payload } = yield take(`${recieveComment}`);
     yield put(recieveComment(payload));
   }
+}
+
+export function* onConnect() {
+  const { payload } = yield take(`${fetchConnect}`);
+  const socket = yield call(connectPromisfy, payload.liveid);
+  yield call(connectChannel, socket);
+  yield put(fadeOutModal());
+  yield fork(commentSage);
 }
 
 export function* liveSaga() {

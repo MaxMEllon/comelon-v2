@@ -1,7 +1,7 @@
 import debug from 'debug';
 
-debug.enable('JAICO:*');
+debug.enable('Comelon:*');
 
 export default function debuggerCreator(label) {
-  return debug(`JAICO:${label}`);
+  return debug(`Comelon:${label}`);
 }

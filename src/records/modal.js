@@ -1,12 +1,12 @@
 import { Record } from 'immutable';
+import KeyMirror from 'keymirror-symbol';
 
-
-export const ModalState = {
-  HIDE: 'hide',
-  SHOW: 'show',
-  FADEOUT: 'fadeOut',
-  FADEIN: 'fadeIn',
-};
+export const ModalState = KeyMirror({
+  HIDE: null,
+  SHOW: null,
+  FADEOUT: null,
+  FADEIN: null,
+});
 
 const defaultValue = {
   visible: ModalState.HIDE,

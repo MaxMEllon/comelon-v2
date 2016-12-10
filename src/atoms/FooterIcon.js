@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import './FooterIcon.css';
 
 export default function FooterIcon(props) {
@@ -9,3 +9,7 @@ export default function FooterIcon(props) {
     </div>
   );
 }
+
+FooterIcon.propTypes = {
+  iconName: PropTypes.string,
+};

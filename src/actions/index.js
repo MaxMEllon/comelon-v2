@@ -17,5 +17,9 @@ export const successLogout = createAction('SUCCESS_USER_LOGOUT');
 
 export const ping = createAction('USER_PING');
 
-export const connect = createAction('LIVE_CONNECT');
+// connect
+export const fetchConnect = createAction('FETCH_LIVE_CONNECT');
+export const successConnect = createAction('SUCCESS_LIVE_CONNECT');
+// export const failConnect = createAction('FAIL_LIVE_CONNECT');
+
 export const recieveComment = createAction('RECIEVE_COMMENT');

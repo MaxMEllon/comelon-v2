@@ -8,7 +8,8 @@ const defaultValue = {
 
 export default class UserRecord extends Record(defaultValue) {
   constructor(cookie = '') {
-    super({ isLogin: cookie !== '', cookie });
+    super({ cookie });
+    this.setLoginState(this.cookie !== '');
     autoBind(this);
   }
 
@@ -22,6 +23,11 @@ export default class UserRecord extends Record(defaultValue) {
     localStorage.setItem('isLogin', 'false');
     this.set('isLogin', false);
     this.resetCookie();
+  }
+
+  setLoginState(state) {
+    localStorage.setItem('isLogin', state);
+    this.set('isLogin', state);
   }
 
   setCookie(cookie) {

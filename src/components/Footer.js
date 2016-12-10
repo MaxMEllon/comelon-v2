@@ -25,4 +25,5 @@ export default function Footer({ onShowLoginModal, onShowConnectForm, onShowConf
 Footer.propTypes = {
   onShowLoginModal: PropTypes.func.isRequired,
   onShowConnectForm: PropTypes.func.isRequired,
+  onShowConfigModal: PropTypes.func.isRequired,
 };
