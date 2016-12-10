@@ -1,6 +1,6 @@
 import React from 'react';
 import './LoginFrom.css';
-import Button from './Button';
+import Button from '../atoms/Button';
 import {
   fetchLogin,
   fetchLogout,
@@ -25,13 +25,13 @@ const renderLoginForm = dispatch => (
   <div className="login-page">
     <h2>ログイン</h2>
     <hr />
-    <div className="email">
-      <label>メールアドレス</label>
+    <div id="login-form-email" className="email">
+      <label htmlFor="login-form-email">メールアドレス</label>
       <input id="email" type="text" />
     </div>
     <br />
-    <div className="password">
-      <label>パスワード</label>
+    <div id="login-form-password" className="password">
+      <label htmlFor="lofin-form-password">パスワード</label>
       <input id="password" type="password" />
     </div>
     <hr />

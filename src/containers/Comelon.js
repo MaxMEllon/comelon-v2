@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Modal from '../components/Modal';
-import LoginForm from '../atoms/LoginForm';
+import LoginForm from '../components/LoginForm';
 import ConfigForm from '../components/ConfigForm';
 import debugCreator from '../utils/debug';
 import {
@@ -22,6 +22,7 @@ class Comelon extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
+    // See: https://github.com/MaxMEllon/js-compare-bench
     const result = !(Object.is(nextProps.user, this.props.user)) ||
                    !(Object.is(nextProps.modal, this.props.modal));
     debug('should update? : %o', result);
